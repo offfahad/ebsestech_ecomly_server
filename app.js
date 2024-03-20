@@ -13,12 +13,9 @@ app.use(morgan('tiny'));
 app.use(cors());
 app.options('*', cors());
 
-app.get('/', (req, res) => {
-  return res.status(404).send('Sorry, cant find that');
-});
-app.get('/watch/videos/:id', (request, response) => {
-  return response.json({ videoId: request.params.id });
-});
+
+const authRouter = require('./routes/auth')
+app.use('/', authRouter)
 
 // Start the server
 // localhost >> 192.168.0.0
