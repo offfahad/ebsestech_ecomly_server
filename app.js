@@ -25,14 +25,14 @@ app.get('/watch/videos/:id', (request, response) => {
 const hostname = env.HOST;
 const port = env.PORT;
 
-// mongoose
-//   .connect(env.MONGODB_CONNECTION_STRING)
-//   .then(() => {
-//     console.log('Connected to Database');
-//   })
-//   .catch((error) => {
-//     console.error(error);
-//   });
+mongoose
+  .connect(env.MONGODB_CONNECTION_STRING)
+  .then(() => {
+    console.log('Connected to Database');
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}`);
