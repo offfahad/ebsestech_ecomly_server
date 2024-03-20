@@ -1,0 +1,23 @@
+{
+  "name": "dbestech_ecomly_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/offfahad/ebsestech_ecomly_server.git"
+  },
+  "author": "fahad",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/offfahad/ebsestech_ecomly_server/issues"
+  },
+  "homepage": "https://github.com/offfahad/ebsestech_ecomly_server#readme",
+  "dependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
