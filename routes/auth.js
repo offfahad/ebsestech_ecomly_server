@@ -35,7 +35,7 @@ router.post('/login', authController.login);
 
 router.post('/register', validateUser, authController.register);
 
-// router.get('/verify-token', authController.verifyToken);
+router.get('/verify-token', authController.verifyToken);
 
 // router.post('/forgot-password', authController.forgotPassword);
 

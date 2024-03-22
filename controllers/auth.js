@@ -42,7 +42,6 @@ exports.register = async function (req, res) {
 };
 
 
-
 exports.login = async function (req, res) {
   try {
     const { email, password } = req.body;
@@ -78,6 +77,32 @@ exports.login = async function (req, res) {
     }).save();
     user.passwordHash = undefined;
     return res.json({ ...user._doc, accessToken });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ type: error.name, message: error.message });
+  }
+};
+
+exports.verifyToken = async function (req, res) {
+  try {
+    let accessToken = req.headers.authorization;
+    if (!accessToken) return res.json(false);
+    accessToken = accessToken.replace('Bearer', '').trim();
+
+    const token = await Token.findOne({ accessToken });
+    if (!token) return res.json(false);
+
+    const tokenData = jwt.decode(token.refreshToken);
+
+    const user = await User.findById(tokenData.id);
+    if (!user) return res.json(false);
+
+    const isValid = jwt.verify(
+      token.refreshToken,
+      process.env.REFRESH_TOKEN_SECRET
+    );
+    if (!isValid) return res.json(false);
+    return res.json(true);
   } catch (error) {
     console.error(error);
     return res.status(500).json({ type: error.name, message: error.message });
